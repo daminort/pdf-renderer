@@ -1,0 +1,12 @@
+@import '~antd/dist/antd.css';
+
+.app {
+  width: calc(100vw - 15%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  display: flex;
+  padding: 16px 8px;
+}
