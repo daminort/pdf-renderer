@@ -1,5 +1,5 @@
 # pdf-renderer
-The alternative way to render PDF with keeping origin PDF coordinates for text blocks
+An alternative way to render PDF with keeping origin PDF coordinates for text blocks
 
 ## Problem
 
