@@ -8,5 +8,28 @@
 
 .header {
   display: flex;
+  align-items: center;
   padding: 16px 8px;
+  height: 40px;
+
+  .label {
+    flex-grow: 1;
+  }
+  .file {
+    flex-grow: 10;
+    margin-left: 16px;
+  }
+  .btn {
+    flex-grow: 1;
+  }
+}
+
+.preview {
+  min-height: calc(100vh - 60px);
+  padding: 24px;
+  margin-top: 8px;
+  border: none;
+  box-sizing: border-box;
+  box-shadow: grey 2px 2px 12px;
+  border-radius: 4px;
 }

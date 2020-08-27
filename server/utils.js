@@ -10,13 +10,11 @@ const {
 
 function uploadFile(req) {
 
-  const form = formidable({
-    keepExtensions: true,
-  });
+  const form = formidable();
 
   return new Promise((resolve, reject) => {
 
-    form.parse(req, (err, _, files) => {
+    form.parse(req, (err, fields, files) => {
       if (err) {
         reject(err);
       }
@@ -25,6 +23,7 @@ function uploadFile(req) {
       if (!file) {
         const err = new Error('No field called "document" in form data or empty file');
         reject(err);
+        return;
       }
 
       const { path, name } = file;
