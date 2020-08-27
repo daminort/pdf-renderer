@@ -140,6 +140,7 @@ function extractHTML(pdfData) {
 
       const style = createStyle({
         position: 'absolute',
+        zIndex: 10,
         left: x * scale,
         top: y * scale,
         color: getColor(clr),
@@ -156,17 +157,37 @@ function extractHTML(pdfData) {
       htmlPage.text.push(html);
     }
 
-    // for (let item of page.HLines) {
-    //   item.x = item.x * scale;
-    //   item.y = item.y * scale;
-    //   item.l = item.l * scale;
-    // }
-    //
-    // for (let item of page.VLines) {
-    //   item.x = item.x * scale;
-    //   item.y = item.y * scale;
-    //   item.l = item.l * scale;
-    // }
+    for (let item of page.HLines) {
+      const { x, y, w, l } = item;
+      const style = createStyle({
+        position: 'absolute',
+        zIndex: 1,
+        left: x * scale,
+        top: y * scale,
+        height: 1,
+        widht: l * scale,
+        borderBottom: `1px solid ${getColor()}`,
+      });
+
+      const html = `<div style="${style}" />`;
+      htmlPage.hLines.push(html);
+    }
+    
+    for (let item of page.VLines) {
+      const { x, y, w, l } = item;
+      const style = createStyle({
+        position: 'absolute',
+        zIndex: 1,
+        left: x * scale,
+        top: y * scale,
+        width: 1,
+        height: l * scale,
+        borderLeft: `1px solid ${getColor()}`,
+      });
+
+      const html = `<div style="${style}" />`;
+      htmlPage.hLines.push(html);
+    }
 
     result.pages.push(htmlPage);
   }

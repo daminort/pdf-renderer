@@ -53,12 +53,17 @@ const cssProperties = {
   fontSize: 'font-size',
   fontWeight: 'font-weight',
   fontStyle: 'font-style',
+  zIndex: 'z-index',
+  borderBottom: 'border-bottom',
+  borderLeft: 'border-left',
 }
 
 const pixelProperties = [
   'left',
   'top',
-  'fontSize'
+  'fontSize',
+  'width',
+  'height',
 ];
 
 const getColor = (index) => pdfColors[index] || pdfColors[0];
