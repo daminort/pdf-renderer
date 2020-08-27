@@ -8,22 +8,32 @@ import { Preview } from '../Preview';
 
 const App = () => {
 
+  const [showLines, setShowLines] = useState(false);
+
   const [state, upload] = useAsyncFn(async (file) => {
-    console.log('App.js [12], file:', file);
     return await uploadFile(file);
   }, []);
 
   const onUpload = useCallback(file => {
-    console.log('App.js [17], file:', file);
     upload(file);
   })
+
+  const onShowLines = useCallback(() => {
+    setShowLines(!showLines);
+  },[showLines, setShowLines]);
 
   const pdfContent = state.value || null;
 
   return (
     <div className="app">
-      <Header onUpload={onUpload} />
-      <Preview content={pdfContent} />
+      <Header
+        onUpload={onUpload}
+        onShowLines={onShowLines}
+      />
+      <Preview
+        content={pdfContent}
+        showLines={showLines}
+      />
     </div>
   );
 }

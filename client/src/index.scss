@@ -19,8 +19,26 @@
     flex-grow: 10;
     margin-left: 16px;
   }
+  .show-lines {
+    cursor: pointer;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 8px;
+    }
+  }
   .btn {
     flex-grow: 1;
+    background-color: #0075ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    &:disabled {
+      cursor: auto;
+      background-color: gray;
+    }
   }
 }
 

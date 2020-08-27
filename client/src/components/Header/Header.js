@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-const Header = ({ onUpload }) => {
+const Header = ({ onUpload, onShowLines }) => {
 
   const [file, setFile] = useState(null);
 
@@ -11,9 +11,17 @@ const Header = ({ onUpload }) => {
   }, [setFile]);
 
   const onClickUpload = useCallback(() => {
+    if (!file) {
+      return;
+    }
+
     onUpload(file);
-    setFile('');
+    setFile(null);
   }, [file, onUpload, setFile]);
+
+  const onChangeShowLines = useCallback(({ target }) => {
+    onShowLines(target.checked);
+  }, [onShowLines]);
 
   return (
     <div className="header">
@@ -25,7 +33,15 @@ const Header = ({ onUpload }) => {
         accept="application/pdf"
         onChange={onChangeFile}
       />
-      <button className="btn" onClick={onClickUpload}>
+      <label className="show-lines">
+        <input type="checkbox" onChange={onChangeShowLines} />
+        <span>Show lines</span>
+      </label>
+      <button
+        className="btn"
+        disabled={!file}
+        onClick={onClickUpload}
+      >
         Upload
       </button>
     </div>

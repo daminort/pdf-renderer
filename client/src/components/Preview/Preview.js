@@ -1,13 +1,13 @@
 import React from 'react';
 import parse from 'react-html-parser';
 
-const Preview = ({ content }) => {
+const Preview = ({ content, showLines }) => {
 
-  console.log('Preview.js [6], value:', content);
   const doc = content?.html?.doc;
   const pages = content?.html?.pages || [];
 
   const hLines = (pages[0] && pages[0].hLines) || [];
+  const vLines = (pages[0] && pages[0].vLines) || [];
   const text = (pages[0] && pages[0].text) || [];
 
   const docStyle = {
@@ -15,8 +15,12 @@ const Preview = ({ content }) => {
     height: doc?.height || 'auto',
   };
 
-  const hl = (Array.isArray(hLines))
+  const hl = (showLines && Array.isArray(hLines))
     ? hLines.map(line => parse(line))
+    : null;
+
+  const vl = (showLines && Array.isArray(vLines))
+    ? vLines.map(line => parse(line))
     : null;
 
   const blocks = (Array.isArray(text))
@@ -27,6 +31,7 @@ const Preview = ({ content }) => {
     <div className="preview">
       <div className="content" style={docStyle}>
         {hl}
+        {vl}
         {blocks}
       </div>
     </div>
