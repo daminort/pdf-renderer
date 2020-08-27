@@ -9,20 +9,13 @@ async function uploadFile(file) {
   const formData = new FormData();
   formData.append('document', file);
 
-  console.log('server.js [10]:', { formData });
-
-  const result = await axios.post(baseURL, formData, {
-    headers: {},
-    // headers: {
-    //   'Content-Type': 'multipart/form-data',
-    // },
-  });
+  const result = await axios.post(baseURL, formData);
   if (result?.error) {
     console.error('Error: ', result?.error);
     return null;
   }
 
-  return result;
+  return result.data;
 }
 
 export {

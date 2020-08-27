@@ -28,8 +28,17 @@
   min-height: calc(100vh - 60px);
   padding: 24px;
   margin-top: 8px;
+  margin-bottom: 24px;
   border: none;
   box-sizing: border-box;
   box-shadow: grey 2px 2px 12px;
   border-radius: 4px;
+
+  .content {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 0;
+  }
 }
